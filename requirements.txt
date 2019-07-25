@@ -1,0 +1,9 @@
+django
+django-widget-tweaks
+pydicom
+pynetdicom
+psycopg2
+numpy
+python-decouple
+dj-database-url
+gunicorn
