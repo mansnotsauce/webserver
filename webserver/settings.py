@@ -25,7 +25,7 @@ SECRET_KEY = 'a@3ztrl+@c1fxtam0bebap59m@p^=bbssc*it-h=l%4_nw#%)^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['104.248.77.215', 'mammo-man.com']
 
 
 # Application definition
@@ -132,8 +132,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
+
+MEDIA_URL = '/media/'
+
 LOGOUT_REDIRECT_URL = 'login'
 
 LOGIN_REDIRECT_URL = 'home'
-#DATA_UPLOAD_MAX_MEMORY_SIZE = 10000000
-#DATA_UPLOAD_MAX_NUMBER_FIELDS = None
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10000000
+DATA_UPLOAD_MAX_NUMBER_FIELDS = None
