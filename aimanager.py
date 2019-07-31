@@ -7,8 +7,15 @@ Created on Wed Jul 17 09:47:11 2019
 import pydicom
 import psycopg2
 import imf
+import os
+import django
+import numpy as np
+import png
+#os.environ['DJANGO_SETTINGS_MODULE'] = 'webserver.settings'
+#django.setup()
 from boards.models import Result
 from django.contrib.auth.models import User
+
 class AIManager:
     
     
@@ -17,8 +24,7 @@ class AIManager:
         
     def run(self):
         results = []
-        successCode = 0x0000
-        if self.image.Modality == 'MG':            
+        if self.image.Modality == 'MG':
             result = imf.run()
             if result == 'Fail':
                 results.append('Inframammary fold')
@@ -26,10 +32,8 @@ class AIManager:
                 results.append('Good')
         else:
             #Wrong SOP class
-            successCode = 0x0122
-        if len(results) > 0:
-            self.save_results(results)
-        return successCode
+            results.append('Image not valid')
+        return results
         
     def save_results(self, results):
         reason = ""
