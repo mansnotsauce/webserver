@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.conf.urls import url
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from . import settings
 from boards import views
 from accounts import views as accounts_views
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
@@ -26,4 +29,8 @@ urlpatterns = [
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^accounts/login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    url(r'^userupload/$', views.userupload, name='userupload'),
+    url(r'^accounts/userupload/$', views.userupload, name='userupload'),
 ]
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
