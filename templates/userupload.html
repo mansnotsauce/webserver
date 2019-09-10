@@ -10,6 +10,9 @@
                 <h3 class="card-title">Image Upload</h3>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
+                    {% if invalid_image %}
+                        <label for="image" style="color:red;">Image Must Be Dicom Format</label>
+                    {% endif %}
                     <div class="form-group">
                       <input type="file" name="image">
                     </div>
